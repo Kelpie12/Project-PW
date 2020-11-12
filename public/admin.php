@@ -1,9 +1,9 @@
 <?php
 include("connection.php");
 include("function.php");
-if (empty($_SESSION['auth'])) {
-    header("location: login.php");
-}
+// if (empty($_SESSION['auth'])) {
+//     header("location: login.php");
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

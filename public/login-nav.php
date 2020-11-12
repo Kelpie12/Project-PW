@@ -22,6 +22,14 @@ if (isset($_REQUEST['login_btn'])) {
             }
         }
     }
+
+    if (!$found) {
+        alert("User Not Found !");
+    } else {
+        if (!$correctPass) {
+            alert("Incorrect Password");
+        }
+    }
 }
 if (isset($_REQUEST['login_forgot_btn'])) {
     alert("PINDAH PAGE");
