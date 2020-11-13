@@ -1,9 +1,7 @@
 <?php
 include("connection.php");
 include("function.php");
-// if (empty($_SESSION['auth'])) {
-//     header("location: login.php");
-// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +13,7 @@ include("function.php");
 </head>
 
 <body>
-    <h1>LIST USER BELUM AJAX BUT SOON WILL BE</h1>
+    <h1>LIST USER</h1>
     <table border="1">
         <thead>
             <tr>
@@ -26,26 +24,64 @@ include("function.php");
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-            <?php
-            $sql = "select * from users";
-            $result = $con->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-            ?>
-                    <tr>
-                        <td><?= $row['id_user'] ?></td>
-                        <td><?= $row['username_user'] ?></td>
-                        <td><?= $row['password_user'] ?></td>
-                        <td><?= $row['saldo_user'] ?></td>
-                        <td><button value='<?= $row['id_user'] ?>'> DELETE </button></td>
-                    </tr>
-            <?php
-                }
-            }
-            ?>
+        <tbody class='listUser'>
+
         </tbody>
     </table>
 </body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        load();
+
+        $(".listUser").on("click", ".delete-user", function() {
+            let id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "admin-delete-user.php",
+                data: {
+                    id: id
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    $(".listUser").html("");
+                    response.forEach(element => {
+                        addElement(element);
+                    });
+
+                    alert("Sukses Mendelete User");
+                }
+            });
+        });
+
+        function load() {
+            $.ajax({
+                type: "POST",
+                url: "admin-load-all-user.php",
+                dataType: "JSON",
+                success: function(response) {
+                    $(".listUser").html("");
+                    response.forEach(element => {
+                        addElement(element);
+                    });
+                }
+            });
+        }
+
+        function addElement(element) {
+            let tr = `
+            <tr>
+            <td> ${element['id_user']}</td>
+            <td> ${element['username_user']}</td>
+            <td> ${element['password_user']}</td>
+            <td> ${element['saldo_user']}</td>
+            <td><button value='${element['id_user']}' class='delete-user'> Delete </button></td>
+            </tr>
+            `;
+
+            $(".listUser").append(tr);
+        }
+    });
+</script>
 
 </html>
