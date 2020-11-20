@@ -11,6 +11,7 @@ if (isset($_REQUEST['login_btn'])) {
     $msg = "";
     $found = false;
     $correctPass = false;
+
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             if ($row['username_user'] == $username) {
