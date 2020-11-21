@@ -9,7 +9,7 @@ include("function.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin List User</title>
 </head>
 <link rel="stylesheet" href="../Semantic/semantic.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -22,15 +22,13 @@ include("function.php");
 
 <body>
     <div class="segments ui">
-
         <div class="ui segment inverted">
             <div class="ui secondary pointing menu inverted">
                 <a href="#" class="item uwu"> UWU </a>
-                <a href="admin-list-barang.php" class="item active"> Users </a>
-                <a href="admin-list-barang.php" class="item"> Shops Item </a>
+                <a href="admin-list-user.php" class="item active"> Users </a>
+                <a href="admin-list-item.php" class="item"> Shops Item </a>
             </div>
         </div>
-
         <div class="segment ui">
             <h2>LIST USER</h2>
             <table class='table ui celled green'>
@@ -57,7 +55,7 @@ include("function.php");
         $(".modal").show();
         $.ajax({
             type: "POST",
-            url: "admin-load-all-user.php",
+            url: "./admin-load-all-user.php",
             dataType: "JSON",
             success: function(response) {
                 $(".listUser").html("");
@@ -77,7 +75,7 @@ include("function.php");
             <td> ${element['username_user']}</td>
             <td> ${element['password_user']}</td>
             <td> ${element['saldo_user']}</td>
-            <td><button value='${element['id_user']}' class='delete-user'> Delete </button></td>
+            <td><button value='${element['id_user']}' class='delete-user button ui red'> Delete </button></td>
             </tr>
             `;
 
