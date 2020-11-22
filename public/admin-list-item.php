@@ -36,7 +36,7 @@ include("function.php");
         </div>
         <div class="segment ui">
             <h2>List Item</h2>
-            <table class='table ui celled green'>
+            <table class='table ui celled black'>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -81,9 +81,13 @@ include("function.php");
             }
         });
     }
+
     $(document).ready(function() {
         loadItem();
 
+        $(".listItem").on("click", ".delete-item", function() {
+            alert("delete");
+        });
     });
 </script>
 
