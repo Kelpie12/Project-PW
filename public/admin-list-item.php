@@ -34,6 +34,21 @@ include("function.php");
                 <a href="admin-list-item.php" class="item active"> Shops Item </a>
             </div>
         </div>
+        <div class="segments ui horizontal">
+            <div class="segment ui">
+                <h2>Search Item</h2>
+                <div class="ui icon input">
+                    <select id="search-by">
+                        <option value="id_item">Item ID</option>
+                        <option value="name_item">Item Name</option>
+                    </select>
+                    <input type="text" placeholder="Search..." id='search-item'>
+                </div>
+                <h2>Category Filter</h2>
+                <div class="cont ui vertical menu "></div>
+                <button class='button ui black'>Search</button>
+            </div>
+        </div>
         <div class="segment ui">
             <h2>List Item</h2>
             <table class='table ui celled black'>
@@ -61,7 +76,7 @@ include("function.php");
         response.forEach(element => {
             let tr = `<tr> 
                 <td> ${element['id']} </td>
-                <td> <img src='${element['image']}'/> </td>
+                <td> <img src='./item/${element['image']}'/> </td>
                 <td> ${element['category']} </td>
                 <td> ${element['price']} </td>
                 <td> <button class='delete-item button red ui' value='${element['id']}'> Delete </button> </td>
@@ -82,11 +97,90 @@ include("function.php");
         });
     }
 
+    function loadCategoryFilter() {
+        $.ajax({
+            type: "POST",
+            url: "./admin-load-all-category.php",
+            dataType: "JSON",
+            success: function(response) {
+                $(".cont").html("");
+                printCategory(response);
+            }
+        });
+    }
+
+    function printCategory(response) {
+        response.forEach(element => {
+            let input = `<input type='checkbox' value='${element['id_category']}' class='my-item'> <label> ${element['name_category']} </label>`;
+            let div = `<div class='checkbox ui'>${input}</div>`;
+            let item = `<div class='item'> ${div} </div>`;
+            $(".cont").append(item);
+        });
+    }
+
+    function printFilteredItem(response, data) {
+        $(".listItem").html("");
+        response.forEach(element => {
+            if (data.includes(element['category_id_item'])) {
+                let tr = `
+                <tr> 
+                <td> ${element['id']} </td>
+                <td> <img src='./item/${element['image']}'/> </td>
+                <td> ${element['category']} </td>
+                <td> ${element['price']} </td>
+                <td> <button class='delete-item button red ui' value='${element['id']}'> Delete </button> </td>
+                </tr>`;
+
+                $(".listItem").append(tr);
+            }
+        });
+    }
+
     $(document).ready(function() {
         loadItem();
+        loadCategoryFilter();
 
         $(".listItem").on("click", ".delete-item", function() {
             alert("delete");
+        });
+
+        $(".cont").on("click", '.my-item', function() {
+            let test = document.querySelectorAll(".my-item");
+            let data = [];
+            test.forEach(element => {
+                if (element.checked) {
+                    data.push(element.value);
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "./admin-load-item.php",
+                dataType: "JSON",
+                success: function(response) {
+                    printFilteredItem(response, data);
+                }
+            });
+        });
+
+        $("#search-item").change(function(e) {
+            e.preventDefault();
+            let searchBy = $("#search-by").val();
+            let text = $("#search-item").val();
+            let sqlCond = `${searchBy} = '${text}'`;
+            if (text != "") {
+                console.log(sqlCond);
+            }
+        });
+
+        $("#search-by").change(function(e) {
+            e.preventDefault();
+            let searchBy = $("#search-by").val();
+            let text = $("#search-item").val();
+            let sqlCond = `${searchBy} = '${text}'`;
+            if (text != "") {
+                console.log(sqlCond);
+            }
         });
     });
 </script>
