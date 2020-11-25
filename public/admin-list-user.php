@@ -50,6 +50,7 @@ include("function.php");
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="../Semantic/semantic.min.js"></script>
+<script src="./function.js"></script>
 <script>
     function load() {
         $(".modal").show();
@@ -76,7 +77,7 @@ include("function.php");
             <td> ${element['id_user']}</td>
             <td> ${element['username_user']}</td>
             <td> ${element['password_user']}</td>
-            <td> ${element['saldo_user']}</td>
+            <td> Rp ${format(element['saldo_user'])}</td>
             <td><button value='${element['id_user']}' class='delete-user button ui red'> Delete </button></td>
             </tr>
             `;

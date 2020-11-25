@@ -34,8 +34,9 @@ include("function.php");
                 <a href="admin-list-item.php" class="item active"> Shops Item </a>
             </div>
         </div>
+
         <div class="segments ui horizontal">
-            <div class="segment ui">
+            <div class="segment ui ">
                 <h2>Search Item</h2>
                 <div class="ui icon input">
                     <select id="search-by">
@@ -47,28 +48,33 @@ include("function.php");
                 <h2>Category Filter</h2>
                 <div class="cont ui vertical menu "></div>
             </div>
+
+            <div class="segment ui">
+                <h2>List Item</h2>
+                <table class='table ui celled black'>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Item Picture</th>
+                            <th>Item Name</th>
+                            <th>Item Category</th>
+                            <th>Item Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class='listItem'>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="segment ui">
-            <h2>List Item</h2>
-            <table class='table ui celled black'>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Item Picture</th>
-                        <th>Item Name</th>
-                        <th>Item Category</th>
-                        <th>Item Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody class='listItem'>
-                </tbody>
-            </table>
-        </div>
+
     </div>
 </body>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="../Semantic/semantic.min.js"></script>
+<script src="./function.js"></script>
+
 <script>
     function printItem(response) {
         $(".listItem").html("");
@@ -78,7 +84,7 @@ include("function.php");
                 <td> <img src='../assets/items/${element['image']}.jpg'/> </td>
                 <td> ${element['name_item']} </td>
                 <td> ${element['category']} </td>
-                <td> Rp ${element['price_item']} </td>
+                <td> Rp ${format(element['price_item'])} </td>
                 <td> <button class='delete-item button red ui' value='${element['id_item']}'> Delete </button> </td>
             </tr>`;
 
@@ -128,7 +134,7 @@ include("function.php");
                 <td> <img src='../assets/items/${element['image']}.jpg'/> </td>
                 <td> ${element['name_item']} </td>
                 <td> ${element['category']} </td>
-                <td> Rp ${element['price_item']} </td>
+                <td> Rp ${format(element['price_item'])} </td>
                 <td> <button class='delete-item button red ui' value='${element['id_item']}' > Delete </button> </td>
             </tr>`;
 
