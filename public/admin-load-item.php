@@ -3,7 +3,7 @@ include("connection.php");
 
 //getting all the items
 $arr = [];
-$result = $con->query("select * from items");
+$result = $con->query("select * from items where status = 1");
 if ($result) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {

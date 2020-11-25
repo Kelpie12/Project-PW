@@ -75,11 +75,11 @@ include("function.php");
         response.forEach(element => {
             let tr = `<tr> 
                 <td> ${element['id_item']} </td>
-                <td> <img src='./item/${element['image']}'/> </td>
+                <td> <img src='../assets/items/${element['image']}.jpg'/> </td>
                 <td> ${element['name_item']} </td>
                 <td> ${element['category']} </td>
                 <td> Rp ${element['price_item']} </td>
-                <td> <button class='delete-item button red ui' value='${element['id']}'> Delete </button> </td>
+                <td> <button class='delete-item button red ui' value='${element['id_item']}'> Delete </button> </td>
             </tr>`;
 
             $(".listItem").append(tr);
@@ -125,17 +125,17 @@ include("function.php");
                 if (data.includes(element['category_id_item'])) {
                     let tr = `<tr> 
                 <td> ${element['id_item']} </td>
-                <td> <img src='./item/${element['image']}'/> </td>
+                <td> <img src='../assets/items/${element['image']}.jpg'/> </td>
                 <td> ${element['name_item']} </td>
                 <td> ${element['category']} </td>
                 <td> Rp ${element['price_item']} </td>
-                <td> <button class='delete-item button red ui' value='${element['id']}'> Delete </button> </td>
+                <td> <button class='delete-item button red ui' value='${element['id_item']}' > Delete </button> </td>
             </tr>`;
 
                     $(".listItem").append(tr);
                 }
             });
-        } else {}
+        }
 
     }
 
@@ -144,7 +144,20 @@ include("function.php");
         loadCategoryFilter();
 
         $(".listItem").on("click", ".delete-item", function() {
-            alert("delete");
+            let id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "./admin-delete-item.php",
+                data: {
+                    id: id
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    if (response == "sukses") {
+                        loadItem();
+                    }
+                }
+            });
         });
 
         $(".cont").on("click", '.my-item', function() {
@@ -170,7 +183,7 @@ include("function.php");
             e.preventDefault();
             let searchBy = $("#search-by").val();
             let text = $("#search-item").val();
-            let sqlCond = `${searchBy} = "${text}"`;
+            let sqlCond = `${searchBy} == "${text}"`;
             if (text != "") {
                 console.log(sqlCond);
             }
