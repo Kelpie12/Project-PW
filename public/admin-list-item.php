@@ -46,7 +46,6 @@ include("function.php");
                 </div>
                 <h2>Category Filter</h2>
                 <div class="cont ui vertical menu "></div>
-                <button class='button ui black'>Search</button>
             </div>
         </div>
         <div class="segment ui">
@@ -75,10 +74,11 @@ include("function.php");
         $(".listItem").html("");
         response.forEach(element => {
             let tr = `<tr> 
-                <td> ${element['id']} </td>
+                <td> ${element['id_item']} </td>
                 <td> <img src='./item/${element['image']}'/> </td>
+                <td> ${element['name_item']} </td>
                 <td> ${element['category']} </td>
-                <td> ${element['price']} </td>
+                <td> Rp ${element['price_item']} </td>
                 <td> <button class='delete-item button red ui' value='${element['id']}'> Delete </button> </td>
             </tr>`;
 
@@ -111,7 +111,7 @@ include("function.php");
 
     function printCategory(response) {
         response.forEach(element => {
-            let input = `<input type='checkbox' value='${element['id_category']}' class='my-item'> <label> ${element['name_category']} </label>`;
+            let input = `<input type='checkbox' value='${element['id_category']}' class='my-item' checked='checked'> <label> ${element['name_category']} </label>`;
             let div = `<div class='checkbox ui'>${input}</div>`;
             let item = `<div class='item'> ${div} </div>`;
             $(".cont").append(item);
@@ -120,20 +120,23 @@ include("function.php");
 
     function printFilteredItem(response, data) {
         $(".listItem").html("");
-        response.forEach(element => {
-            if (data.includes(element['category_id_item'])) {
-                let tr = `
-                <tr> 
-                <td> ${element['id']} </td>
+        if (data.length > 0) {
+            response.forEach(element => {
+                if (data.includes(element['category_id_item'])) {
+                    let tr = `<tr> 
+                <td> ${element['id_item']} </td>
                 <td> <img src='./item/${element['image']}'/> </td>
+                <td> ${element['name_item']} </td>
                 <td> ${element['category']} </td>
-                <td> ${element['price']} </td>
+                <td> Rp ${element['price_item']} </td>
                 <td> <button class='delete-item button red ui' value='${element['id']}'> Delete </button> </td>
-                </tr>`;
+            </tr>`;
 
-                $(".listItem").append(tr);
-            }
-        });
+                    $(".listItem").append(tr);
+                }
+            });
+        } else {}
+
     }
 
     $(document).ready(function() {
@@ -167,7 +170,7 @@ include("function.php");
             e.preventDefault();
             let searchBy = $("#search-by").val();
             let text = $("#search-item").val();
-            let sqlCond = `${searchBy} = '${text}'`;
+            let sqlCond = `${searchBy} = "${text}"`;
             if (text != "") {
                 console.log(sqlCond);
             }
@@ -177,7 +180,7 @@ include("function.php");
             e.preventDefault();
             let searchBy = $("#search-by").val();
             let text = $("#search-item").val();
-            let sqlCond = `${searchBy} = '${text}'`;
+            let sqlCond = `${searchBy} == "${text}"`;
             if (text != "") {
                 console.log(sqlCond);
             }

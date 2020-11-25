@@ -25,7 +25,7 @@ if ($result) {
 
 //combining category id from the items to check the name
 for ($i = 0; $i < count($arr); $i++) {
-    $arr[$i]["category"] = $arrCat[$arr[$i]['id_category']]['name_category'];
+    $arr[$i]["category"] = $arrCat[$arr[$i]['category_id_item']]['name_category'];
 }
 
 print json_encode($arr);
