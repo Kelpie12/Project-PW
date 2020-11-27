@@ -23,6 +23,7 @@ body{
     justify-content: center;
     align-items: center;
     margin:auto;
+    margin-top: 1vh;
 }
 #banner_left, #banner_right{
     width:5vw;
