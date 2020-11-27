@@ -32,6 +32,7 @@ include("function.php");
                 <a href="#" class="item uwu"> UWU </a>
                 <a href="admin-list-user.php" class="item"> Users </a>
                 <a href="admin-list-item.php" class="item active"> Shops Item </a>
+                <a href="admin-insert-item.php" class="item">Add New Item</a>
             </div>
         </div>
 
@@ -76,81 +77,21 @@ include("function.php");
 <script src="./function.js"></script>
 
 <script>
-    function printItem(response) {
-        $(".listItem").html("");
-        response.forEach(element => {
-            let tr = `<tr> 
-                <td> ${element['id_item']} </td>
-                <td> <img src='../assets/items/${element['image']}.jpg'/> </td>
-                <td> ${element['name_item']} </td>
-                <td> ${element['category']} </td>
-                <td> Rp ${format(element['price_item'])} </td>
-                <td> <button class='delete-item button red ui' value='${element['id_item']}'> Delete </button> </td>
-            </tr>`;
-
-            $(".listItem").append(tr);
-        });
-    }
-
-    function loadItem() {
-        $.ajax({
-            type: "POST",
-            url: "./admin-load-item.php",
-            dataType: "JSON",
-            success: function(response) {
-                printItem(response);
-            }
-        });
-    }
-
-    function loadCategoryFilter() {
-        $.ajax({
-            type: "POST",
-            url: "./admin-load-all-category.php",
-            dataType: "JSON",
-            success: function(response) {
-                $(".cont").html("");
-                printCategory(response);
-            }
-        });
-    }
-
-    function printCategory(response) {
-        response.forEach(element => {
-            let input = `<input type='checkbox' value='${element['id_category']}' class='my-item' checked='checked'> <label> ${element['name_category']} </label>`;
-            let div = `<div class='checkbox ui'>${input}</div>`;
-            let item = `<div class='item'> ${div} </div>`;
-            $(".cont").append(item);
-        });
-    }
-
-    function printFilteredItem(response, data) {
-        $(".listItem").html("");
-        if (data.length > 0) {
-            response.forEach(element => {
-                if (data.includes(element['category_id_item'])) {
-                    let tr = `<tr> 
-                <td> ${element['id_item']} </td>
-                <td> <img src='../assets/items/${element['image']}.jpg'/> </td>
-                <td> ${element['name_item']} </td>
-                <td> ${element['category']} </td>
-                <td> Rp ${format(element['price_item'])} </td>
-                <td> <button class='delete-item button red ui' value='${element['id_item']}' > Delete </button> </td>
-            </tr>`;
-
-                    $(".listItem").append(tr);
-                }
-            });
-        }
-
-    }
-
     $(document).ready(function() {
         loadItem();
         loadCategoryFilter();
 
         $(".listItem").on("click", ".delete-item", function() {
             let id = $(this).val();
+
+            let test = document.querySelectorAll(".my-item");
+            let data = [];
+            test.forEach(element => {
+                if (element.checked) {
+                    data.push(element.value);
+                }
+            });
+
             $.ajax({
                 type: "POST",
                 url: "./admin-delete-item.php",
@@ -160,7 +101,14 @@ include("function.php");
                 dataType: "JSON",
                 success: function(response) {
                     if (response == "sukses") {
-                        loadItem();
+                        $.ajax({
+                            type: "POST",
+                            url: "./admin-load-item.php",
+                            dataType: "JSON",
+                            success: function(response) {
+                                printFilteredItem(response, data);
+                            }
+                        });
                     }
                 }
             });

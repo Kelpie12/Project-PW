@@ -27,6 +27,7 @@ include("function.php");
                 <a href="#" class="item uwu"> UWU </a>
                 <a href="admin-list-user.php" class="item active"> Users </a>
                 <a href="admin-list-item.php" class="item"> Shops Item </a>
+                <a href="admin-insert-item.php" class="item">Add New Item</a>
             </div>
         </div>
         <div class="segment ui">
@@ -52,39 +53,6 @@ include("function.php");
 <script src="../Semantic/semantic.min.js"></script>
 <script src="./function.js"></script>
 <script>
-    function load() {
-        $(".modal").show();
-        $.ajax({
-            type: "POST",
-            url: "./admin-load-all-user.php",
-            dataType: "JSON",
-            success: function(response) {
-                $(".listUser").html("");
-                response.forEach(element => {
-                    if (element['status'] == 1) {
-                        addElement(element);
-                    }
-                });
-            }
-        });
-
-
-    }
-
-    function addElement(element) {
-        let tr = `
-            <tr>
-            <td> ${element['id_user']}</td>
-            <td> ${element['username_user']}</td>
-            <td> ${element['password_user']}</td>
-            <td> Rp ${format(element['saldo_user'])}</td>
-            <td><button value='${element['id_user']}' class='delete-user button ui red'> Delete </button></td>
-            </tr>
-            `;
-
-        $(".listUser").append(tr);
-    }
-
     $(document).ready(function() {
         load();
 
