@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group form-button">
                         <input type="submit" name="register" class="form-submit" value="Register" style="margin-right: 5px;"></input>
-                        <a href="login.php" ><button type="button" class="form-submit">Go to Login</button></a>
+                        <a href="./login.php" ><button type="button" class="form-submit">Go to Login</button></a>
                     </div>
                 </form>
             </div>
