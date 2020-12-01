@@ -26,7 +26,6 @@ include("./public/function.php");
                 <div class="ui inverted secondary pointing menu">
 
                     <div class="item">
-                        <img src="/images/logo.png" style="margin-right:2vw;">
                         <a style="margin-right:15vw;">
                             <h3 style="color:white;">UWU</h3>
                         </a>
@@ -36,15 +35,20 @@ include("./public/function.php");
                         <h4>Home</h4>
                     </a>
                     <a class="item">
-                        <h4>Men</h4>
+                        <h4>T-Shirt</h4>
                     </a>
                     <a class="item">
-                        <h4>Women</h4>
+                        <h4>Jacket</h4>
                     </a>
                     <a class="item">
-                        <h4>Kids</h4>
+                        <h4>Hoodie</h4>
                     </a>
-
+                    <a class="item">
+                        <h4>Pants</h4>
+                    </a>
+                    <a class="item">
+                        <h4>Leggings</h4>
+                    </a>
                     <div class="right menu">
                         <div class="ui item" style="margin-bottom:1vh;">
                             <div class="ui left search icon input">
@@ -52,31 +56,13 @@ include("./public/function.php");
                                 <input type="text" name="search" placeholder="Search...">
                             </div>
                         </div>
-                        <a class="ui item">
-                            <div class="ui right pointing dropdown icon button" style="margin-bottom:0.5vh;">
-                                <i class="user icon"></i>
-                                <div class="menu">
-
-                                    <div class="divider"></div>
-                                    <div class="header">
-                                        <i class="tags icon"></i>
-                                        Filter by tag
-                                    </div>
-                                    <div class="item">
-                                        <div class="ui red empty circular label"></div>
-                                        Important
-                                    </div>
-                                    <div class="item">
-                                        <div class="ui blue empty circular label"></div>
-                                        Announcement
-                                    </div>
-                                    <div class="item">
-                                        <div class="ui black empty circular label"></div>
-                                        Discussion
-                                    </div>
-                                </div>
+                        <div class="dropdown" style="float:right;">
+                            <button class="dropbtn"></button>
+                            <div class="dropdown-content">
+                                <a href="#">Sign In</a>
+                                <a href="#">Cart</a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
