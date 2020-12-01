@@ -106,3 +106,41 @@ footer h3{
 #searchbar{
     margin-bottom: 1vh;
 }
+.dropbtn {
+    background-image: url('striped.png');
+    background-size: contain;
+    cursor: pointer;
+    width:2vw;
+    height:4vh;
+    margin-top:2.6vh;
+  }
+  
+  .dropdown {
+    width:2vw;
+    height:2vw;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: lightgray;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+  }
+  .dropdown-content a:hover {
+    color: black;
+    background-color: white;
+    
+  }
+  
+  .dropdown:hover .dropdown-content {display: block;}
