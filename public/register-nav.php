@@ -28,14 +28,14 @@ if (isset($_REQUEST['register_btn'])) {
         if ($isSame) {
             $sql = "insert into users (username_user,first_name_user,last_name_user,email_user,password_user,birthdate_user, saldo_user, status) values ('$username','$firstName','$lastName','$email','$password','$birthdate',0,1)";
             if ($con->query($sql)) {
-                alert("REGISTER SUCCESS");
+                alert("SUCCESSFULLY REGISTERED");
             } else {
-                alert("REGISTER GAGAL");
+                alert("REGISTER FAILED");
             }
         } else {
-            alert("PASSWORD DAN CONFIRM BERBEDA");
+            alert("CONFIRM AND PASSWORD DIFFERENT");
         }
     } else {
-        alert("SUDAH ADA DATANYA");
+        alert("USERNAME HAS BEEN USED");
     }
 }

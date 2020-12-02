@@ -18,17 +18,19 @@ if (isset($_REQUEST['login_btn'])) {
                 $found = true;
                 if ($row['password_user'] == $password) {
                     $correctPass = true;
-                    alert("SUKSES LOGIN");
+                    alert("LOGIN SUCCESSFUL");
+                    $_SESSION['auth'] = $row;
+                    header("location: ../header.php");
                 }
             }
         }
     }
 
     if (!$found) {
-        alert("User Not Found !");
+        alert("USER NOT FOUND !");
     } else {
         if (!$correctPass) {
-            alert("Incorrect Password");
+            alert("INCORRECT PASSWORD");
         }
     }
 }

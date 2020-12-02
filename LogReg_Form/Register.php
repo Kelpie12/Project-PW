@@ -1,5 +1,9 @@
+<?php
+include("../public/register-nav.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +13,24 @@
     <title>Register</title>
 
     <style>
-        .container{
-            margin-top: 0px;
+        .container {
+            margin-top: 60px;
             height: 650px;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
-<body>
 
+<body>
     <div class="container">
         <div class="regis-content">
             <div class="regis-image">
@@ -27,33 +41,38 @@
                 <h2><b>Register</b></h2>
                 <form method="post" class="register-form" id="login-form">
                     <div class="form-group">
-                        <input type="text" name="Register_fname" id="Register_fname" style="width: 140px;" placeholder="First Name"/>
-                        <input type="text" name="Register_lname" id="Register_lname" style="width: 140px;" placeholder="Last Name"/>
+                        <input type="text" name="register_fname" id="register_fname" style="width: 140px;" placeholder="First Name" />
+                        <input type="text" name="register_lname" id="register_lname" style="width: 140px;" placeholder="Last Name" />
                         <hr>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="Register_password" id="Register_password" placeholder="Password"/>
+                        <input type="text" name="register_username" id="register_username" style="width: 140px;" placeholder="Username" />
                         <hr>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="Register_confirm" id="Register_confirm" placeholder="Confirm Password"/>
-                        <hr>
-                    </div>                    
-                    <div class="form-group">
-                        <input type="text" name="Register_email" id="Register_email" placeholder="E-mail"/>
+                        <input type="password" name="register_password" id="register_password" placeholder="Password" />
                         <hr>
                     </div>
                     <div class="form-group">
-                        <input type="date" name="Register_birthdate" id="Register_birthdate" placeholder="mm/dd/yyyy"/>
+                        <input type="password" name="register_confirm" id="register_confirm" placeholder="Confirm Password" />
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="register_email" id="register_email" placeholder="E-mail" />
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" name="register_birthdate" id="register_birthdate" placeholder="mm/dd/yyyy" />
                         <hr>
                     </div>
                     <div class="form-group form-button">
-                        <input type="submit" name="Register_btn" class="form-submit" value="Register" style="margin-right: 5px;"></input>
-                        <a href="./login.php" ><button type="button" class="form-submit">Go to Login</button></a>
+                        <input type="submit" name="register_btn" class="form-submit" value="register" style="margin-right: 5px;"></input>
+                        <a href="./login.php"><button type="button" class="form-submit">Go to Login</button></a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </body>
+
 </html>

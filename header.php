@@ -1,6 +1,10 @@
 <?php
 include("./public/connection.php");
 include("./public/function.php");
+$link = "./profile.php";
+if (empty($_SESSION['auth'])) {
+    $link = "./LogReg_Form/Login.php";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +22,25 @@ include("./public/function.php");
     <script src="assets/Semantic-UI-CSS-master/semantic.min.js"></script>
 
 </head>
+<style>
+    #banner_container,
+    img {
+        animation: fadeInAnimation ease 3s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
 
 <body>
     <header>
@@ -59,8 +82,16 @@ include("./public/function.php");
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"></button>
                             <div class="dropdown-content">
-                                <a href="#">Sign In</a>
-                                <a href="#">Cart</a>
+                                <a href=<?= $link ?>><?php
+                                                        if (empty($_SESSION['auth'])) {
+                                                            print("Sign In");
+                                                        } else {
+                                                            $username = $_SESSION['auth']['first_name_user'] . " ";
+                                                            $username .= $_SESSION['auth']['last_name_user'];
+                                                            print("Welcome, $username");
+                                                        }
+                                                        ?></a>
+                                <a href="./cart.php">Cart</a>
                             </div>
                         </div>
                     </div>
@@ -86,13 +117,13 @@ include("./public/function.php");
             <a class="item">
                 <h3>UWU-SHOP</h3>
             </a>
-            <a class="item">
+            <a class="item" href="about-us.php">
                 <h5 class="bottom-item">About Us</h5>
             </a>
-            <a class="item">
+            <a class="item" href='./LogReg_Form/Register.php'>
                 <h5 class="bottom-item">Create Account</h5>
             </a>
-            <a class="item">
+            <a class="item" href='./shop.php'>
                 <h5 class="bottom-item">Home Catalog</h5>
             </a>
 
