@@ -30,10 +30,6 @@
         -webkit-text-fill-color: transparent;
     }
 
-    .center-container {
-        margin-top: 5vh;
-    }
-
     .description {
         background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./assets/AboutUS/pexels-andrea-piacquadio-3761504.jpg');
         background-size: cover;
@@ -54,11 +50,12 @@
     .description p {
         font-size: 2rem;
         color: white;
-        padding: 20vh 0vw;
+        padding: 20vh 10vw;
         word-wrap: break-word;
     }
 
     .center-container {
+        margin-top: 5vh;
         animation: fadeInAnimation ease 3s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
@@ -94,22 +91,31 @@
         <div class="header">
             <div class="ui inverted segment">
                 <div class="ui inverted secondary pointing menu">
-                    <a style="margin-right:15vw;" class="item">
-                        <h3 style="color:white;">UWU</h3>
-                    </a>
-                    <a class="item">
+
+                    <div class="item">
+                        <a style="margin-right:15vw;">
+                            <h3 style="color:white;">UWU</h3>
+                        </a>
+                    </div>
+
+                    <a class="active item">
                         <h4>Home</h4>
                     </a>
                     <a class="item">
-                        <h4>Men</h4>
+                        <h4>T-Shirt</h4>
                     </a>
                     <a class="item">
-                        <h4>Women</h4>
+                        <h4>Jacket</h4>
                     </a>
                     <a class="item">
-                        <h4>Kids</h4>
+                        <h4>Hoodie</h4>
                     </a>
-
+                    <a class="item">
+                        <h4>Pants</h4>
+                    </a>
+                    <a class="item">
+                        <h4>Leggings</h4>
+                    </a>
                     <div class="right menu">
                         <div class="ui item" style="margin-bottom:1vh;">
                             <div class="ui left search icon input">
@@ -117,31 +123,21 @@
                                 <input type="text" name="search" placeholder="Search...">
                             </div>
                         </div>
-                        <a class="ui item">
-                            <div class="ui right pointing dropdown icon button" style="margin-bottom:0.5vh;">
-                                <i class="user icon"></i>
-                                <div class="menu">
-
-                                    <div class="divider"></div>
-                                    <div class="header">
-                                        <i class="tags icon"></i>
-                                        Filter by tag
-                                    </div>
-                                    <div class="item">
-                                        <div class="ui red empty circular label"></div>
-                                        Important
-                                    </div>
-                                    <div class="item">
-                                        <div class="ui blue empty circular label"></div>
-                                        Announcement
-                                    </div>
-                                    <div class="item">
-                                        <div class="ui black empty circular label"></div>
-                                        Discussion
-                                    </div>
-                                </div>
+                        <div class="dropdown" style="float:right;">
+                            <button class="dropbtn"></button>
+                            <div class="dropdown-content">
+                                <a href=<?= $link ?>><?php
+                                                        if (empty($_SESSION['auth'])) {
+                                                            print("Sign In");
+                                                        } else {
+                                                            $username = $_SESSION['auth']['first_name_user'] . " ";
+                                                            $username .= $_SESSION['auth']['last_name_user'];
+                                                            print("Welcome, $username");
+                                                        }
+                                                        ?></a>
+                                <a href="./cart.php">Cart</a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,49 +148,24 @@
             <center>
                 <h3 class='title'>Who Are We ?</h3>
                 <div class="description">
-                    <p>We are a university students from ISTTS who create this website for our projects</p>
-
-                </div>
-            </center>
-        </div>
-        <div class="middle">
-            <center>
-                <h3 class="title">Our Website Feature</h3>
-                <div class="menu-box">
-                    <div class="border">
-                        <center>
-                            <div class="icon"></div>
-                            <p>ABOGO BOGA</p>
-                        </center>
-                    </div>
-                    <div class="border">
-                        <center>
-                            <div class="icon"></div>
-                            <p>ABOGO BOGA</p>
-                        </center>
-                    </div>
-                    <div class="border">
-                        <center>
-                            <div class="icon"></div>
-                            <p>ABOGO BOGA</p>
-                        </center>
-                    </div>
-                </div>
+                    <p>We are a university students from ISTTS who create this website for our project
+                        This website is meantfor educational purposes and no items are being sold
+                    </p>
             </center>
         </div>
     </div>
     <footer>
         <div class="ui bottom fixed large menu">
-            <a class="item">
+            <a class="item" href="header.php">
                 <h3>UWU-SHOP</h3>
             </a>
-            <a class="item">
+            <a class="item" href="about-us.php">
                 <h5 class="bottom-item">About Us</h5>
             </a>
-            <a class="item">
+            <a class="item" href='./LogReg_Form/Register.php'>
                 <h5 class="bottom-item">Create Account</h5>
             </a>
-            <a class="item">
+            <a class="item" href='./shop.php'>
                 <h5 class="bottom-item">Home Catalog</h5>
             </a>
 
@@ -203,7 +174,6 @@
                     2020, Made by UWU Team
                 </div>
             </div>
-
         </div>
     </footer>
 </body>

@@ -71,16 +71,16 @@
 
     <footer>
         <div class="ui bottom fixed large menu">
-            <a class="item">
+            <a class="item" href="header.php">
                 <h3>UWU-SHOP</h3>
             </a>
-            <a class="item">
+            <a class="item" href="about-us.php">
                 <h5 class="bottom-item">About Us</h5>
             </a>
-            <a class="item">
+            <a class="item" href='./LogReg_Form/Register.php'>
                 <h5 class="bottom-item">Create Account</h5>
             </a>
-            <a class="item">
+            <a class="item" href='./shop.php'>
                 <h5 class="bottom-item">Home Catalog</h5>
             </a>
 
@@ -89,7 +89,6 @@
                     2020, Made by UWU Team
                 </div>
             </div>
-
         </div>
     </footer>
 </body>

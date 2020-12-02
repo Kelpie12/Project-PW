@@ -114,7 +114,7 @@ if (empty($_SESSION['auth'])) {
 
     <footer>
         <div class="ui bottom fixed large menu">
-            <a class="item">
+            <a class="item" href='header.php'>
                 <h3>UWU-SHOP</h3>
             </a>
             <a class="item" href="about-us.php">
