@@ -1,4 +1,5 @@
-<?php?>
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,11 +65,58 @@
             </div>
         </div>
     </header>
+    <div class="ui compact segment" style="margin-left:2vw;">
+        <h2>Filter</h2>
+        <div class="ui checkbox">
+            <input type="checkbox" class="selector_category" value="1" id="cb1">
+            <label>T-Shirt</label>
+        </div>
+        <div class="ui checkbox">
+            <input type="checkbox" class="selector_category" value="2" id="cb2">
+            <label>Jacket</label>
+        </div>
+        <div class="ui checkbox">
+            <input type="checkbox" class="selector_category" value="3" id="cb3">
+            <label>Hoodie</label>
+        </div>
+        <br>
+        <div class="ui checkbox">
+            <input type="checkbox" class="selector_category" value="4" id="cb4">
+            <label>Long Pants</label>
+        </div>
+        <div class="ui checkbox">
+            <input type="checkbox" class="selector_category" value="5" id="cb5">
+            <label>Short Pants</label>
+        </div>
+        <div class="ui checkbox">
+            <input type="checkbox" class="selector_category" value="6" id="cb6">
+            <label>Leggings</label>
+        </div>
+        <br><br>
 
-    <div class="segment ui myCards">
+        <input type="hidden" id="hidden_minimum_price" value="0"/>
+        <input type="hidden" id="hidden_maximum_price" value="2000000"/>
+        <div id="price_range">
+            <div class="ui right labeled input">
+                <label for="amount" class="ui label">$</label>
+                <input type="number" placeholder="Min Price" id="minprice">
+                <div class="ui basic label">.00</div>
+            </div><br><br>
+            <div class="ui right labeled input">
+                <label for="amount" class="ui label">$</label>
+                <input type="number" placeholder="Max Price" id="maxprice">
+                <div class="ui basic label">.00</div>
+            </div>
+        </div>
+        <br><br>
+
+        <button class="ui black button" id="btnFilter">Go!</button>
+        <button class="ui basic button" id="btnClear">Clear</button>
+    </div>
+    <div class="segment ui myCards" style="width:96vw;margin-left:2vw;margin-bottom:10vh;">
 
     </div>
-
+    <br><br>
     <footer>
         <div class="ui bottom fixed large menu">
             <a class="item" href="header.php">
@@ -163,6 +211,8 @@
         });
     }
 
+    
+
     $(document).ready(function() {
         printCategoryForCards();
         loadCards();
@@ -170,6 +220,73 @@
             let id = ($(this).attr("id"));
             console.log(id);
         });
+
+        $('#btnClear').click(function(){
+            $("#cb1").prop("checked",false);
+            $("#cb2").prop("checked",false);
+            $("#cb3").prop("checked",false);
+            $("#cb4").prop("checked",false);
+            $("#cb5").prop("checked",false);
+            $("#cb6").prop("checked",false);
+            $("#maxprice").val("");
+            $("#minprice").val("");
+            printCategoryForCards();
+            loadCards();
+        });
+
+        $("#btnFilter").click(function(){
+            var action = "fetch_data";
+            var minimum_price=$('#minprice').val();
+            var maximum_price=$('#maxprice').val();
+            
+            // alert(category);
+            if(minimum_price==""){
+                minimum_price=0;
+            }
+            if(maximum_price==""){
+                maximum_price=2000000;
+            }
+            // alert(minimum_price+", "+maximum_price);
+            if(minimum_price>maximum_price){
+                alert('Min Price can not be higher than the Max Price');
+            }
+            else{
+                $(".myCards").html("");
+                    let c = `<div style='margin-top: 30px'>
+                    <h2> Filter Result </h2>
+                        <div class="ui link cards">
+                            <div class='five column grid ui filtered'>
+                            </div>
+                        </div>
+                    </div>`;
+                    $(".myCards").append(c);
+                    var category = get_filter();
+                    // alert(category);
+                $.ajax({
+                url:"load-shop-filter.php",
+                method:"POST",
+                data:{
+                    action:action, 
+                    minimum_price:minimum_price, 
+                    maximum_price:maximum_price,
+                    category:category,
+                },
+                success: function (response) {
+                    $(`.filtered`).append(response);
+                },
+            });
+            }
+            
+        });
+        
+        function get_filter(){
+            var filter=[];
+            $(".selector_category:checked").each(function(){
+                filter.push($(this).val());  
+            });
+            return filter;
+        }
+        
     });
 </script>
 

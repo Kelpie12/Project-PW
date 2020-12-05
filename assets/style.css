@@ -157,3 +157,6 @@ footer h3 {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.ui.segment label{
+  margin-right: 2vw;
+}
