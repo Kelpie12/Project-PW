@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHOPS</title>
+    <title>Shop</title>
 </head>
 <link rel="stylesheet" type="text/css" href="./assets/Semantic-UI-CSS-master/semantic.min.css">
 <link rel="stylesheet" type="text/css" href="./assets/style.css">
@@ -21,13 +21,11 @@
         <div class="header">
             <div class="ui inverted segment">
                 <div class="ui inverted secondary pointing menu">
-
                     <div class="item">
                         <a style="margin-right:15vw;">
                             <h3 style="color:white;">UWU</h3>
                         </a>
                     </div>
-
                     <a class="item">
                         <h4>Home</h4>
                     </a>
@@ -94,8 +92,8 @@
         </div>
         <br><br>
 
-        <input type="hidden" id="hidden_minimum_price" value="0"/>
-        <input type="hidden" id="hidden_maximum_price" value="2000000"/>
+        <input type="hidden" id="hidden_minimum_price" value="0" />
+        <input type="hidden" id="hidden_maximum_price" value="2000000" />
         <div id="price_range">
             <div class="ui right labeled input">
                 <label for="amount" class="ui label">$</label>
@@ -211,82 +209,94 @@
         });
     }
 
-    
+
 
     $(document).ready(function() {
         printCategoryForCards();
         loadCards();
-        $(".grid").on("click", ".image", function() {
+
+        $("body").on("click", ".image", function() {
             let id = ($(this).attr("id"));
-            console.log(id);
+            $.ajax({
+                type: "POST",
+                url: "user-detail.php",
+                data: {
+                    id: id
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    if (response == 'fix') {
+                        document.location.href = "./detail.php";
+                    }
+                }
+            });
         });
 
-        $('#btnClear').click(function(){
-            $("#cb1").prop("checked",false);
-            $("#cb2").prop("checked",false);
-            $("#cb3").prop("checked",false);
-            $("#cb4").prop("checked",false);
-            $("#cb5").prop("checked",false);
-            $("#cb6").prop("checked",false);
+        $('#btnClear').click(function() {
+            $("#cb1").prop("checked", false);
+            $("#cb2").prop("checked", false);
+            $("#cb3").prop("checked", false);
+            $("#cb4").prop("checked", false);
+            $("#cb5").prop("checked", false);
+            $("#cb6").prop("checked", false);
             $("#maxprice").val("");
             $("#minprice").val("");
             printCategoryForCards();
             loadCards();
         });
 
-        $("#btnFilter").click(function(){
+        $("#btnFilter").click(function() {
             var action = "fetch_data";
-            var minimum_price=$('#minprice').val();
-            var maximum_price=$('#maxprice').val();
-            
+            var minimum_price = $('#minprice').val();
+            var maximum_price = $('#maxprice').val();
+
             // alert(category);
-            if(minimum_price==""){
-                minimum_price=0;
+            if (minimum_price == "") {
+                minimum_price = 0;
             }
-            if(maximum_price==""){
-                maximum_price=2000000;
+            if (maximum_price == "") {
+                maximum_price = 2000000;
             }
             // alert(minimum_price+", "+maximum_price);
-            if(minimum_price>maximum_price){
+            if (minimum_price > maximum_price) {
                 alert('Min Price can not be higher than the Max Price');
-            }
-            else{
+            } else {
                 $(".myCards").html("");
-                    let c = `<div style='margin-top: 30px'>
+                let c = `<div style='margin-top: 30px'>
                     <h2> Filter Result </h2>
                         <div class="ui link cards">
                             <div class='five column grid ui filtered'>
                             </div>
                         </div>
                     </div>`;
-                    $(".myCards").append(c);
-                    var category = get_filter();
-                    // alert(category);
+                $(".myCards").append(c);
+                var category = get_filter();
+                // alert(category);
                 $.ajax({
-                url:"load-shop-filter.php",
-                method:"POST",
-                data:{
-                    action:action, 
-                    minimum_price:minimum_price, 
-                    maximum_price:maximum_price,
-                    category:category,
-                },
-                success: function (response) {
-                    $(`.filtered`).append(response);
-                },
-            });
+                    url: "load-shop-filter.php",
+                    method: "POST",
+                    data: {
+                        action: action,
+                        minimum_price: minimum_price,
+                        maximum_price: maximum_price,
+                        category: category,
+                    },
+                    success: function(response) {
+                        $(`.filtered`).append(response);
+                    },
+                });
             }
-            
+
         });
-        
-        function get_filter(){
-            var filter=[];
-            $(".selector_category:checked").each(function(){
-                filter.push($(this).val());  
+
+        function get_filter() {
+            var filter = [];
+            $(".selector_category:checked").each(function() {
+                filter.push($(this).val());
             });
             return filter;
         }
-        
+
     });
 </script>
 
