@@ -1,4 +1,6 @@
-<?php?>
+<?php
+$link = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
