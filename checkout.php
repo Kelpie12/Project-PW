@@ -113,10 +113,6 @@
         transition: border 0.5s ease-out;
     }
 
-    body {
-        background: #1e1e1e;
-    }
-
     .socket {
         width: 200px;
         height: 200px;
