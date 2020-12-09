@@ -119,7 +119,7 @@ include("./public/connection.php");
         <div class="header">Confirmation</div>
         <div class="content">
             <p>Do You want to add <b><?= $_SESSION['items'][0]['name_item'] ?></b> to your cart ?</p>
-            <p style="text-align: right;"><button class="button red ui" id="cancel">Cancel</button> <button class="button green ui" id="confirm">Confirm</button></p>
+            <p style="text-align: right;"><button class="button red ui" id="cancel">Cancel</button> <button class="button green ui" id="confirm" item_id=<?= $_SESSION['items'][0]['id_item'] ?>>Confirm</button></p>
         </div>
     </div>
     <div class="ui modal tiny test">
@@ -133,7 +133,17 @@ include("./public/connection.php");
     <div class="ui modal tiny pict">
         <div class="header">Image Preview</div>
         <div class="image content">
-            <img src=" ./assets/items/<?= $_SESSION['items'][0]['image'] ?>.jpg" alt="">
+            <center>
+                <img src=" ./assets/items/<?= $_SESSION['items'][0]['image'] ?>.jpg" alt="" class="image" style="width: 450px; height: auto;">
+            </center>
+        </div>
+    </div>
+    <div class="ui modal tiny alert">
+        <div class="header">No User :(</div>
+        <div class="content">
+            <i class="user ui"></i>
+            <p>Please log in first to continue your purchase</p>
+            <p style="text-align: right;"> <button class="button green ui" id="login"> Log In </button></p>
         </div>
     </div>
 </body>
@@ -147,9 +157,31 @@ include("./public/connection.php");
         $('.ui.modal.confirmation').modal('hide');
     });
 
+    $("#login").click(function(e) {
+        e.preventDefault();
+        document.location.href = "./LogReg_Form/Login.php";
+    });
+
     $("#confirm").click(function(e) {
         e.preventDefault();
-        $('.ui.modal.test').modal('show');
+        let id = $(this).attr("item_id");
+        $.ajax({
+            type: "POST",
+            url: "add-to-cart.php",
+            data: {
+                id: id,
+            },
+            dataType: "JSON",
+            success: function(response) {
+                if (response == "fix") {
+                    $('.ui.modal.test').modal('show');
+                } else if (response == "no user") {
+                    $('.ui.modal.alert').modal('show');
+                } else if (response == "failed") {
+                    alert("failed");
+                }
+            }
+        });
     });
 
     $("#OK").click(function(e) {
@@ -178,6 +210,7 @@ include("./public/connection.php");
             }).modal('toggle');
         }
     });
+
     $.ajax({
         type: "POST",
         url: "suggestion-item.php",
