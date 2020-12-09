@@ -99,19 +99,19 @@ if (empty($_SESSION['auth'])) {
             </div>
         </div>
     </header>
+    <div class="segment">
+        <div id="banner_container">
+            <div id="banner_left">
+                <img src="./assets/left.png" />
+            </div>
 
-    <div id="banner_container">
-        <div id="banner_left">
-            <img src="./assets/left.png" />
-        </div>
+            <div id="rotator1_div"></div>
 
-        <div id="rotator1_div"></div>
-
-        <div id="banner_right">
-            <img src="./assets/right.png" />
+            <div id="banner_right">
+                <img src="./assets/right.png" />
+            </div>
         </div>
     </div>
-
     <footer>
         <div class="ui bottom fixed large menu">
             <a class="item" href='header.php'>

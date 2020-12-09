@@ -65,7 +65,7 @@ include("./public/connection.php");
             </div>
         </div>
     </header>
-    <div class="segment ui">
+    <div class="segment ui" style="margin-top: 5vh;">
         <div style="padding-left: 200px;">
             <div class="ui items">
                 <div class="item">
