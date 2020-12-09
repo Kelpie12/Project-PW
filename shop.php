@@ -141,6 +141,9 @@
 
 <script src="./public/function.js"></script>
 <script>
+    printCategoryForCards();
+    loadCards();
+
     function printCards(response) {
         response.forEach(element => {
             if (element['status'] == 1) {
@@ -164,7 +167,7 @@
                 <div class="extra content">
                     <a>
                         <i class="money icon"></i>
-                        Rp ${format(element['price_item'])}
+                        Rp ${element['price_item']}
                     </a>
                 </div>
             </div>`;
@@ -172,7 +175,6 @@
 
                 $(`.${element['category_id_item']}`).append(col);
             }
-
         });
     }
 
@@ -212,8 +214,6 @@
 
 
     $(document).ready(function() {
-        printCategoryForCards();
-        loadCards();
 
         $("body").on("click", ".image", function() {
             let id = ($(this).attr("id"));

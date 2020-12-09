@@ -40,12 +40,12 @@
             <table class="right">
                 <tr>
                     <td>Total</td>
-                    <td id="total">Rp 100.000</td>
+                    <td id="total">Rp 0</td>
                 </tr>
             </table>
         </div>
         <div class="button">
-            <button type="submit">Check Out</button>
+            <button type="submit" id='checkout'>Check Out</button>
         </div>
     </div>
     <div class="ui modal tiny delete">
@@ -57,6 +57,11 @@
 </body>
 <script>
     printAll();
+
+    $("#checkout").click(function(e) {
+        e.preventDefault();
+        document.location.href = "./checkout.php";
+    });
 
     function printAll() {
         $.ajax({
