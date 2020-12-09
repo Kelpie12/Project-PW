@@ -60,6 +60,9 @@ if (isset($_POST["add-category"])) {
                 <a href="admin-list-user.php" class="item"> Users </a>
                 <a href="admin-list-item.php" class="item"> Shops Item </a>
                 <a href="admin-insert-item.php" class="item active">Add New Item</a>
+                <div class="right menu">
+                    <div class="item"><button class="button red ui "><a href="../header.php" style="color:white;">Log Out</a></button></div>
+                </div>
             </div>
         </div>
     </div>
@@ -85,19 +88,6 @@ if (isset($_POST["add-category"])) {
                 </div>
                 <div class="field">
                     <input type="submit" value="Add" id='add-item' name='add-item' class='ui button black'>
-                </div>
-            </form>
-        </div>
-
-        <div class="segment ui">
-            <form class="ui form" enctype="multipart/form-data" method="POST">
-                <h2>Insert New Category</h2>
-                <div class="field">
-                    <label>Category Name</label>
-                    <input type="text" name='category-name'>
-                </div>
-                <div class="field">
-                    <input type="submit" value="Add" name='add-category' class='ui button black'>
                 </div>
             </form>
         </div>
