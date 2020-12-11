@@ -40,25 +40,25 @@ include("../public/login-nav.php");
 <body>
     <a href="../header.php" style="text-align:left; font-size: 1.1em;">
         < Back To Homepage</a> <div class="container">
-        <div class="login-content">
-            <div class="login-image">
-                <figure><img src="login.png" width="400" height="300" style="padding-top: 30px;"></figure>
+            <div class="login-content">
+                <div class="login-image">
+                    <figure><img src="login.png" width="400" height="300" style="padding-top: 30px;"></figure>
+                </div>
+                <div class="login-form">
+                    <form method="POST" class="ui form" id="login-form" style="padding-top: 110px;">
+                        <h2><b>Login</b></h2>
+                        <div class="field">
+                            <input type="text" name="login_username" id="login_username" placeholder="Username" />
+                        </div>
+                        <div class="field">
+                            <input type="password" name="login_password" id="login_password" placeholder="Password" />
+                        </div>
+                        <button type="submit" name="login_btn" id="login" class="ui button">Login</button>
+                        <a href="./Register.php" type="button" class="ui button" style="margin-left: 5px;">Go to Register</a>
+                    </form>
+                </div>
             </div>
-            <div class="login-form">
-                <form method="POST" class="ui form" id="login-form" style="padding-top: 110px;">
-                    <h2><b>Login</b></h2>
-                    <div class="field">
-                        <input type="text" name="Login_username" id="Login_username" placeholder="Username"/>
-                    </div>
-                    <div class="field">
-                        <input type="password" name="Login_password" id="Login_password" placeholder="Password"/>
-                    </div>
-                    <button type="submit" name="Login_btn" id="login" class="ui button">Login</button>
-                    <a href="./Register.php" type="button" class="ui button" style="margin-left: 5px;">Go to Register</a>  
-                </form>
             </div>
-        </div>
-    </div>
 </body>
 
 </html>
