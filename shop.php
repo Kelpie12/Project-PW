@@ -1,4 +1,5 @@
 <?php
+include("shop-stuff.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,24 +27,28 @@
                             <h3 style="color:white;">UWU</h3>
                         </a>
                     </div>
-                    <a class="item">
+                    <a class="item" name='home'>
                         <h4>Home</h4>
                     </a>
-                    <a class="item">
-                        <h4>T-Shirt</h4>
+                    <a class="item" name='1' id='item1'>
+                        <h4 id=1>T-Shirt</h4>
                     </a>
-                    <a class="item">
-                        <h4>Jacket</h4>
+                    <a class="item" name='2' id='item2'>
+                        <h4 id=2>Jacket</h4>
                     </a>
-                    <a class="item">
-                        <h4>Hoodie</h4>
+                    <a class="item" name='3' id='item3'>
+                        <h4 id=3>Hoodie</h4>
                     </a>
-                    <a class="item">
-                        <h4>Pants</h4>
+                    <a class="item" name='4' id='item4'>
+                        <h4 id=4>Short Pants</h4>
                     </a>
-                    <a class="item">
-                        <h4>Leggings</h4>
+                    <a class="item" name='5' id='item5'>
+                        <h4 id=5>Long Pants</h4>
                     </a>
+                    <a class="item" name='6' id='item6'>
+                        <h4 id=6>Leggings</h4>
+                    </a>
+
                     <div class="right menu">
                         <div class="ui item" style="margin-bottom:1vh;">
                             <div class="ui left search icon input">
@@ -126,7 +131,7 @@
             <a class="item" href='./LogReg_Form/Register.php'>
                 <h5 class="bottom-item">Create Account</h5>
             </a>
-            <a class="item" href='./shop.php'>
+            <a class="item" href='./shop.php' id='reset'>
                 <h5 class="bottom-item">Home Catalog</h5>
             </a>
 
@@ -141,8 +146,25 @@
 
 <script src="./public/function.js"></script>
 <script>
+    $(".ui.menu.secondary").on("click", ".item", function(e) {
+        e.preventDefault();
+        let itemNow = ($(this).children().prop("id"));
+        document.location.href = `./shop.php?q=${itemNow}`;
+    });
+
     printCategoryForCards();
     loadCards();
+
+    $.ajax({
+        type: "POST",
+        url: "set-active.php",
+        dataType: "JSON",
+        success: function(response) {
+            if (response) {
+                $(`#item${response}`).addClass("active");
+            }
+        }
+    });
 
     function printCards(response) {
         response.forEach(element => {
@@ -193,7 +215,7 @@
     function printCategoryForCards() {
         $.ajax({
             type: "POST",
-            url: "./public/admin-load-all-category.php",
+            url: "load-category.php",
             dataType: "JSON",
             success: function(response) {
                 $(".myCards").html("");

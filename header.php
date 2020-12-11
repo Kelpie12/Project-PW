@@ -54,23 +54,26 @@ if (empty($_SESSION['auth'])) {
                         </a>
                     </div>
 
-                    <a class="active item">
+                    <a class="item active" name='home'>
                         <h4>Home</h4>
                     </a>
-                    <a class="item">
-                        <h4>T-Shirt</h4>
+                    <a class="item" name='1'>
+                        <h4 id=1>T-Shirt</h4>
                     </a>
-                    <a class="item">
-                        <h4>Jacket</h4>
+                    <a class="item" name='2'>
+                        <h4 id=2>Jacket</h4>
                     </a>
-                    <a class="item">
-                        <h4>Hoodie</h4>
+                    <a class="item" name='3'>
+                        <h4 id=3>Hoodie</h4>
                     </a>
-                    <a class="item">
-                        <h4>Pants</h4>
+                    <a class="item" name='4'>
+                        <h4 id=4>Short Pants</h4>
                     </a>
-                    <a class="item">
-                        <h4>Leggings</h4>
+                    <a class="item" name='5'>
+                        <h4 id=5>Long Pants</h4>
+                    </a>
+                    <a class="item" name='6'>
+                        <h4 id=6>Leggings</h4>
                     </a>
                     <div class="right menu">
                         <div class="ui item" style="margin-bottom:1vh;">
@@ -99,7 +102,7 @@ if (empty($_SESSION['auth'])) {
             </div>
         </div>
     </header>
-    <div class="segment">
+    <div class="segment" style="margin-top: 5vh; margin-bottom: 5vh;">
         <div id="banner_container">
             <div id="banner_left">
                 <img src="./assets/left.png" />
@@ -112,6 +115,7 @@ if (empty($_SESSION['auth'])) {
             </div>
         </div>
     </div>
+    <div class="">something</div>
     <footer>
         <div class="ui bottom fixed large menu">
             <a class="item" href='header.php'>
@@ -138,6 +142,12 @@ if (empty($_SESSION['auth'])) {
 
 
     <script>
+        $(".ui.menu.secondary").on("click", ".item", function(e) {
+            e.preventDefault();
+            let itemNow = ($(this).children().prop("id"));
+            document.location.href = `./shop.php?q=${itemNow}`;
+        });
+
         var rotator1imgs = new Array("assets/SmallImage/Univ/pexels-andrea-piacquadio-2672979.jpg", "assets/SmallImage/Univ/pexels-andrea-piacquadio-3775539.jpg", "assets/SmallImage/Univ/pexels-andrea-piacquadio-3775568.jpg");
         var rotator1lnks = new Array("", "");
         var rotator1alt = new Array("banner1.jpg", "banner2.jpg", "banner3.jpg");

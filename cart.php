@@ -1,4 +1,6 @@
-<?php?>
+<?php
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,16 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
 </head>
-<link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master/semantic.min.css">
-<link rel="stylesheet" type="text/css" href="./assets/cart_css.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
-</script>
 <link rel="stylesheet" type="text/css" href="./assets/Semantic-UI-CSS-master/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="./assets/style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
 </script>
 <script src="assets/Semantic-UI-CSS-master/semantic.min.js"></script>
+<link rel="stylesheet" href="./assets/cart_css.css">
 
 <body>
     <div class="segment ui cart-page">
@@ -54,10 +54,30 @@
             <p>Item removed from your cart</p>
         </div>
     </div>
+    <div class="ui modal tiny alert">
+        <div class="header">Notification</div>
+        <div class="content">
+            <p>You Havent Logged In Yet Please Log In First</p>
+            <p><button class="button ui green" id='login'>Log In</button></p>
+        </div>
+    </div>
 </body>
 <script>
     printAll();
-
+    $("#login").click(function(e) {
+        e.preventDefault();
+        document.location.href = "./LogReG_Form/Login.php";
+    });
+    $.ajax({
+        type: "POST",
+        url: "get-data.php",
+        dataType: "JSON",
+        success: function(response) {
+            if (response) {
+                $(".ui.modal.alert").modal("show");
+            }
+        }
+    });
     $("#checkout").click(function(e) {
         e.preventDefault();
         document.location.href = "./checkout.php";
