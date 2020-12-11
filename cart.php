@@ -1,5 +1,5 @@
 <?php
-
+include("link.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,65 @@
 <link rel="stylesheet" href="./assets/cart_css.css">
 
 <body>
+    <header>
+        <div class="header">
+            <div class="ui inverted segment">
+                <div class="ui inverted secondary pointing menu">
+                    <div class="item cant">
+                        <a style="margin-right:15vw;">
+                            <h3 style="color:white;">UWU</h3>
+                        </a>
+                    </div>
+                    <a class="item cant home" name='home' id='-1'>
+                        <h4>Home</h4>
+                    </a>
+                    <a class="item" name='1' id='item1'>
+                        <h4 id=1>T-Shirt</h4>
+                    </a>
+                    <a class="item" name='2' id='item2'>
+                        <h4 id=2>Jacket</h4>
+                    </a>
+                    <a class="item" name='3' id='item3'>
+                        <h4 id=3>Hoodie</h4>
+                    </a>
+                    <a class="item" name='4' id='item4'>
+                        <h4 id=4>Short Pants</h4>
+                    </a>
+                    <a class="item" name='5' id='item5'>
+                        <h4 id=5>Long Pants</h4>
+                    </a>
+                    <a class="item" name='6' id='item6'>
+                        <h4 id=6>Leggings</h4>
+                    </a>
+
+                    <div class="right menu">
+                        <div class="ui item cant" style="margin-bottom:1vh;">
+                            <div class="ui left search icon input">
+                                <i class="search icon"></i>
+                                <input type="text" name="search" placeholder="Search...">
+                            </div>
+                        </div>
+                        <div class="dropdown" style="float:right;">
+                            <button class="dropbtn"></button>
+                            <div class="dropdown-content">
+                                <a href=<?= $link ?>><?php
+                                                        if (empty($_SESSION['auth'])) {
+                                                            print("Sign In");
+                                                        } else {
+                                                            $username = $_SESSION['auth']['first_name_user'] . " ";
+                                                            $username .= $_SESSION['auth']['last_name_user'];
+                                                            print("Welcome, $username");
+                                                        }
+                                                        ?></a>
+                                <a href="./cart.php">Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="segment ui cart-page">
         <h1 style="margin-left: 15vw;">Cart</h1>
         <hr>
@@ -48,6 +107,7 @@
             <button type="submit" id='checkout'>Check Out</button>
         </div>
     </div>
+
     <div class="ui modal tiny delete">
         <div class="header">Notification</div>
         <div class="content">

@@ -1,5 +1,6 @@
 <?php
 include("shop-stuff.php");
+include("link.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,12 +23,12 @@ include("shop-stuff.php");
         <div class="header">
             <div class="ui inverted segment">
                 <div class="ui inverted secondary pointing menu">
-                    <div class="item">
+                    <div class="item cant">
                         <a style="margin-right:15vw;">
                             <h3 style="color:white;">UWU</h3>
                         </a>
                     </div>
-                    <a class="item" name='home'>
+                    <a class="item cant home" name='home' id='-1'>
                         <h4>Home</h4>
                     </a>
                     <a class="item" name='1' id='item1'>
@@ -50,7 +51,7 @@ include("shop-stuff.php");
                     </a>
 
                     <div class="right menu">
-                        <div class="ui item" style="margin-bottom:1vh;">
+                        <div class="ui item cant" style="margin-bottom:1vh;">
                             <div class="ui left search icon input">
                                 <i class="search icon"></i>
                                 <input type="text" name="search" placeholder="Search...">
@@ -59,8 +60,16 @@ include("shop-stuff.php");
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"></button>
                             <div class="dropdown-content">
-                                <a href="#">Sign In</a>
-                                <a href="#">Cart</a>
+                                <a href=<?= $link ?>><?php
+                                                        if (empty($_SESSION['auth'])) {
+                                                            print("Sign In");
+                                                        } else {
+                                                            $username = $_SESSION['auth']['first_name_user'] . " ";
+                                                            $username .= $_SESSION['auth']['last_name_user'];
+                                                            print("Welcome, $username");
+                                                        }
+                                                        ?></a>
+                                <a href="./cart.php">Cart</a>
                             </div>
                         </div>
                     </div>
@@ -149,7 +158,12 @@ include("shop-stuff.php");
     $(".ui.menu.secondary").on("click", ".item", function(e) {
         e.preventDefault();
         let itemNow = ($(this).children().prop("id"));
-        document.location.href = `./shop.php?q=${itemNow}`;
+
+        if (!$(this).hasClass("cant")) {
+            document.location.href = `./shop.php?q=${itemNow}`;
+        } else if ($(this).hasClass("home")) {
+            document.location.href = `./header.php`;
+        }
     });
 
     printCategoryForCards();

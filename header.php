@@ -1,10 +1,7 @@
 <?php
 include("./public/connection.php");
 include("./public/function.php");
-$link = "./profile.php";
-if (empty($_SESSION['auth'])) {
-    $link = "./LogReg_Form/Login.php";
-}
+include("./link.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,36 +44,35 @@ if (empty($_SESSION['auth'])) {
         <div class="header">
             <div class="ui inverted segment">
                 <div class="ui inverted secondary pointing menu">
-
-                    <div class="item">
+                    <div class="item cant">
                         <a style="margin-right:15vw;">
                             <h3 style="color:white;">UWU</h3>
                         </a>
                     </div>
-
-                    <a class="item active" name='home'>
+                    <a class="item cant home active" name='home' id='-1'>
                         <h4>Home</h4>
                     </a>
-                    <a class="item" name='1'>
+                    <a class="item" name='1' id='item1'>
                         <h4 id=1>T-Shirt</h4>
                     </a>
-                    <a class="item" name='2'>
+                    <a class="item" name='2' id='item2'>
                         <h4 id=2>Jacket</h4>
                     </a>
-                    <a class="item" name='3'>
+                    <a class="item" name='3' id='item3'>
                         <h4 id=3>Hoodie</h4>
                     </a>
-                    <a class="item" name='4'>
+                    <a class="item" name='4' id='item4'>
                         <h4 id=4>Short Pants</h4>
                     </a>
-                    <a class="item" name='5'>
+                    <a class="item" name='5' id='item5'>
                         <h4 id=5>Long Pants</h4>
                     </a>
-                    <a class="item" name='6'>
+                    <a class="item" name='6' id='item6'>
                         <h4 id=6>Leggings</h4>
                     </a>
+
                     <div class="right menu">
-                        <div class="ui item" style="margin-bottom:1vh;">
+                        <div class="ui item cant" style="margin-bottom:1vh;">
                             <div class="ui left search icon input">
                                 <i class="search icon"></i>
                                 <input type="text" name="search" placeholder="Search...">
