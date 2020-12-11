@@ -19,11 +19,6 @@ include("../public/register-nav.php");
     <title>Register</title>
 
     <style>
-        .container {
-            margin-top: 60px;
-            height: 650px;
-        }
-
         @keyframes fadeInAnimation {
             0% {
                 opacity: 0;
@@ -41,7 +36,7 @@ include("../public/register-nav.php");
         < Back To Homepage</a> <div class="container">
         <div class="regis-content">
             <div class="regis-image">
-                <figure><img src="register.png" width="400" height="300"></figure>
+                <figure><img src="register.png" width="400" height="300" style="padding-left=50px"></figure>
             </div>
 
             <div class="regis-form">
