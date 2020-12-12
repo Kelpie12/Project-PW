@@ -20,7 +20,7 @@ include("link.php");
 <link rel="stylesheet" href="./assets/cart_css.css">
 
 <body>
-    <header>
+<header>
         <div class="header">
             <div class="ui inverted segment">
                 <div class="ui inverted secondary pointing menu">
@@ -42,10 +42,10 @@ include("link.php");
                         <h4 id=3>Hoodie</h4>
                     </a>
                     <a class="item" name='4' id='item4'>
-                        <h4 id=4>Short Pants</h4>
+                        <h4 id=4>Long Pants</h4>
                     </a>
                     <a class="item" name='5' id='item5'>
-                        <h4 id=5>Long Pants</h4>
+                        <h4 id=5>Short Pants</h4>
                     </a>
                     <a class="item" name='6' id='item6'>
                         <h4 id=6>Leggings</h4>
@@ -122,7 +122,19 @@ include("link.php");
         </div>
     </div>
 </body>
+<script src="./public/function.js"></script>
 <script>
+    $(".ui.menu.secondary").on("click", ".item", function(e) {
+        e.preventDefault();
+        let itemNow = ($(this).children().prop("id"));
+
+        if (!$(this).hasClass("cant")) {
+            document.location.href = `./shop.php?q=${itemNow}`;
+        } else if ($(this).hasClass("home")) {
+            document.location.href = `./header.php`;
+        }
+    });
+
     printAll();
     $("#login").click(function(e) {
         e.preventDefault();

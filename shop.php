@@ -41,10 +41,10 @@ include("link.php");
                         <h4 id=3>Hoodie</h4>
                     </a>
                     <a class="item" name='4' id='item4'>
-                        <h4 id=4>Short Pants</h4>
+                        <h4 id=4>Long Pants</h4>
                     </a>
                     <a class="item" name='5' id='item5'>
-                        <h4 id=5>Long Pants</h4>
+                        <h4 id=5>Short Pants</h4>
                     </a>
                     <a class="item" name='6' id='item6'>
                         <h4 id=6>Leggings</h4>
