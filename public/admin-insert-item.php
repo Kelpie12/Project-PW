@@ -36,7 +36,7 @@ if (isset($_POST["add-category"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Add New Item</title>
 </head>
-<link rel="stylesheet" href="../Semantic/semantic.min.css">
+<link rel="stylesheet" href="../assets/Semantic-UI-CSS-master/semantic.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
     .uwu {

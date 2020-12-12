@@ -11,7 +11,7 @@ include("function.php");
     <title>Admin List Item</title>
 </head>
 
-<link rel="stylesheet" href="../Semantic/semantic.min.css">
+<link rel="stylesheet" href="../assets/Semantic-UI-CSS-master/semantic.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
     .uwu {
@@ -212,9 +212,29 @@ include("function.php");
             e.preventDefault();
             let searchBy = $("#search-by").val();
             let text = $("#search-item").val();
-            let sqlCond = `${searchBy} == "${text}"`;
+            let sqlCond = "";
+
+            if (searchBy == 'id_item') {
+                sqlCond = `${searchBy} = ${text}`;
+            } else {
+                sqlCond = `${searchBy} like '%${text}%'`;
+            }
+
             if (text != "") {
-                console.log(sqlCond);
+                $.ajax({
+                    type: "POST",
+                    url: "checkitem.php",
+                    data: {
+                        data: sqlCond
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        printItem(response);
+                    }
+                });
+            } else {
+                loadItem();
+                loadCategoryFilter();
             }
         });
 
@@ -222,9 +242,28 @@ include("function.php");
             e.preventDefault();
             let searchBy = $("#search-by").val();
             let text = $("#search-item").val();
-            let sqlCond = `${searchBy} == "${text}"`;
+            let sqlCond = "";
+            if (searchBy == 'id_item') {
+                sqlCond = `${searchBy} = ${text}`;
+            } else {
+                sqlCond = `${searchBy} like '%${text}%'`;
+            }
+
             if (text != "") {
-                console.log(sqlCond);
+                $.ajax({
+                    type: "POST",
+                    url: "checkitem.php",
+                    data: {
+                        data: sqlCond
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        printItem(response);
+                    }
+                });
+            } else {
+                loadItem();
+                loadCategoryFilter();
             }
         });
     });
