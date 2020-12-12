@@ -126,7 +126,7 @@ include("link.php");
     printAll();
     $("#login").click(function(e) {
         e.preventDefault();
-        document.location.href = "./LogReG_Form/Login.php";
+        document.location.href = "./LogReg_Form/Login.php";
     });
     $.ajax({
         type: "POST",
