@@ -1,5 +1,6 @@
 <?php
 include("shop-stuff.php");
+include("link.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,10 +42,10 @@ include("shop-stuff.php");
                         <h4 id=3>Hoodie</h4>
                     </a>
                     <a class="item" name='4' id='item4'>
-                        <h4 id=4>Short Pants</h4>
+                        <h4 id=4>Long Pants</h4>
                     </a>
                     <a class="item" name='5' id='item5'>
-                        <h4 id=5>Long Pants</h4>
+                        <h4 id=5>Short Pants</h4>
                     </a>
                     <a class="item" name='6' id='item6'>
                         <h4 id=6>Leggings</h4>
@@ -160,6 +161,17 @@ include("shop-stuff.php");
     </div>
 </body>
 <script>
+    $(".ui.menu.secondary").on("click", ".item", function(e) {
+        e.preventDefault();
+        let itemNow = ($(this).children().prop("id"));
+
+        if (!$(this).hasClass("cant")) {
+            document.location.href = `./shop.php?q=${itemNow}`;
+        } else if ($(this).hasClass("home")) {
+            document.location.href = `./header.php`;
+        }
+    });
+
     $("#add-to").click(function(e) {
         e.preventDefault();
         $('.ui.modal.confirmation').modal('show');

@@ -20,13 +20,17 @@ session_start();
 <body>
     <div class="ui segment inverted">
         <div class="ui inverted pointing secondary menu">
+            <a href='./shop.php' class="item">
+                <button class="button white ui">Back To Shop</button>
+            </a>
             <a class="item active">
-                <h4> Home </h4>
+                <h4> Add Fund </h4>
+            </a>
+            <a href="./cart.php" class="item">
+                <button class="button white ui">Go To Cart</button>
             </a>
             <div class="right menu">
-                <a class="item">
-                    <h4><?= $_SESSION['auth']['first_name_user'] . " " . $_SESSION['auth']['last_name_user'] ?></h4>
-                </a>
+                <h3 class='item'><?= $_SESSION['auth']['first_name_user'] . " " . $_SESSION['auth']['last_name_user'] ?></h3>
                 <a class="item">
                     <button class="button ui red" id='logout'>Logout</button>
                 </a>
@@ -143,6 +147,7 @@ session_start();
             $("#amount").val("");
         }
     });
+
     $(".modal").on("click", "#ok", function() {
         $(".modal.ui").modal("hide");
     });

@@ -89,7 +89,7 @@ $link = "";
 </style>
 
 <body>
-<header>
+    <header>
         <div class="header">
             <div class="ui inverted segment">
                 <div class="ui inverted secondary pointing menu">
@@ -153,7 +153,12 @@ $link = "";
                 <h3 class='title'>Who Are We ?</h3>
                 <div class="description">
                     <p>We are a university students from ISTTS who create this website for our project
-                        This website is meantfor educational purposes and no items are being sold
+                        This website is meant for educational purposes and no items are being sold
+                        <br>
+                        <br>
+                        Made By
+                        <br>
+                        Ariel - Felix - Davin
                     </p>
             </center>
         </div>
@@ -183,15 +188,15 @@ $link = "";
     <script src="./public/function.js"></script>
     <script>
         $(".ui.menu.secondary").on("click", ".item", function(e) {
-        e.preventDefault();
-        let itemNow = ($(this).children().prop("id"));
+            e.preventDefault();
+            let itemNow = ($(this).children().prop("id"));
 
-        if (!$(this).hasClass("cant")) {
-            document.location.href = `./shop.php?q=${itemNow}`;
-        } else if ($(this).hasClass("home")) {
-            document.location.href = `./header.php`;
-        }
-    });
+            if (!$(this).hasClass("cant")) {
+                document.location.href = `./shop.php?q=${itemNow}`;
+            } else if ($(this).hasClass("home")) {
+                document.location.href = `./header.php`;
+            }
+        });
     </script>
 </body>
 

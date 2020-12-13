@@ -1,4 +1,5 @@
 <?php
+include("shop-stuff.php");
 include("link.php");
 ?>
 
@@ -20,7 +21,7 @@ include("link.php");
 <link rel="stylesheet" href="./assets/cart_css.css">
 
 <body>
-<header>
+    <header>
         <div class="header">
             <div class="ui inverted segment">
                 <div class="ui inverted secondary pointing menu">
@@ -98,8 +99,10 @@ include("link.php");
         <div class="total-price">
             <table class="right">
                 <tr>
-                    <td>Total</td>
-                    <td id="total">Rp 0</td>
+                    <td>
+                        Total :
+                    </td>
+                    <td id="total" val=0>Rp 0</td>
                 </tr>
             </table>
         </div>
@@ -117,8 +120,7 @@ include("link.php");
     <div class="ui modal tiny alert">
         <div class="header">Notification</div>
         <div class="content">
-            <p>You Havent Logged In Yet Please Log In First</p>
-            <p><button class="button ui green" id='login'>Log In</button></p>
+            <p id='message'>You Havent Logged In Yet Please Log In First</p>
         </div>
     </div>
 </body>
@@ -136,23 +138,50 @@ include("link.php");
     });
 
     printAll();
+
     $("#login").click(function(e) {
         e.preventDefault();
         document.location.href = "./LogReg_Form/Login.php";
     });
+
     $.ajax({
         type: "POST",
         url: "get-data.php",
         dataType: "JSON",
         success: function(response) {
             if (response) {
-                $(".ui.modal.alert").modal("show");
+                $(".ui.modal.alert")
+                    .modal('setting', 'closable', false)
+                    .modal("show");
+                setTimeout(() => {
+                    $("#message").html("Redirecting You To Login Screen");
+                }, 1000);
+                setTimeout(() => {
+                    document.location.href = "./LogReg_Form/Login.php";
+                }, 2500);
+
             }
         }
     });
+
     $("#checkout").click(function(e) {
         e.preventDefault();
-        document.location.href = "./checkout.php";
+        let total = Number.parseInt($("#total").html().split(' ')[1]);
+        $.ajax({
+            type: "POST",
+            url: "payout.php",
+            data: {
+                total: total
+            },
+            dataType: "JSON",
+            success: function(response) {
+                if (response == "success") {
+                    document.location.href = "./checkout.php";
+                } else {
+                    alert("gagal");
+                }
+            }
+        });
     });
 
     function printAll() {
@@ -169,6 +198,7 @@ include("link.php");
     function print(response) {
         $(".my-cart").html("");
         let total = 0;
+        let myMoney = 0;
         response.forEach(element => {
             let tr = `<tr>
                     <td>
@@ -182,13 +212,14 @@ include("link.php");
                             </div>
                         </div>
                     </td>
-                    <td><input type="number" min=0 value="${element['cart_item_amount']}" cartID = '${element['cart_id']}' class='userCartAmount' style='width: 100px; height: 50px; font-size: 1.1rem;'></td>
+                    <td><input type="number" min=1 value="${element['cart_item_amount']}" cartID = '${element['cart_id']}' class='userCartAmount' style='width: 100px; height: 50px; font-size: 1.1rem;'></td>
                     <td style='font-size: 1.2rem;'>Rp ${element['item'][0]['price_item'] * element['cart_item_amount']}</td>
                 </tr>`;
             total += element['item'][0]['price_item'] * element['cart_item_amount'];
             $(".my-cart").append(tr);
         });
-        $("#total").html("Rp " + total);
+
+        $("#total").html(`Rp ${total}`);
     }
 
     $("body").on("click", '#delete', function() {
