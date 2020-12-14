@@ -29,7 +29,7 @@ include("link.php");
                             <h3 style="color:white;">UWU</h3>
                         </a>
                     </div>
-                    <a class="item cant home" name='home' id='-1'>
+                    <a class="item cant home " name='home' id='-1'>
                         <h4>Home</h4>
                     </a>
                     <a class="item" name='1' id='item1'>
@@ -52,12 +52,6 @@ include("link.php");
                     </a>
 
                     <div class="right menu">
-                        <div class="ui item cant" style="margin-bottom:1vh;">
-                            <div class="ui left search icon input">
-                                <i class="search icon"></i>
-                                <input type="text" name="search" placeholder="Search...">
-                            </div>
-                        </div>
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"></button>
                             <div class="dropdown-content">

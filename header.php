@@ -72,12 +72,6 @@ include("./link.php");
                     </a>
 
                     <div class="right menu">
-                        <div class="ui item cant" style="margin-bottom:1vh;">
-                            <div class="ui left search icon input">
-                                <i class="search icon"></i>
-                                <input type="text" name="search" placeholder="Search...">
-                            </div>
-                        </div>
                         <div class="dropdown" style="float:right;">
                             <button class="dropbtn"></button>
                             <div class="dropdown-content">
@@ -138,10 +132,20 @@ include("./link.php");
 
 
     <script>
+        $("#btn-search").click(function(e) {
+            e.preventDefault();
+            alert(("#search-text").val());
+        });
+
         $(".ui.menu.secondary").on("click", ".item", function(e) {
             e.preventDefault();
             let itemNow = ($(this).children().prop("id"));
-            document.location.href = `./shop.php?q=${itemNow}`;
+
+            if (!$(this).hasClass("cant")) {
+                document.location.href = `./shop.php?q=${itemNow}`;
+            } else if ($(this).hasClass("home")) {
+                document.location.href = `./header.php`;
+            }
         });
 
         var rotator1imgs = new Array("assets/SmallImage/Univ/pexels-andrea-piacquadio-2672979.jpg", "assets/SmallImage/Univ/pexels-andrea-piacquadio-3775539.jpg", "assets/SmallImage/Univ/pexels-andrea-piacquadio-3775568.jpg");
