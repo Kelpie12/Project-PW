@@ -32,7 +32,8 @@ include("function.php");
                 <a href="#" class="item uwu"> UWU </a>
                 <a href="admin-list-user.php" class="item"> Users </a>
                 <a href="admin-list-item.php" class="item active"> Shops Item </a>
-                <a href="admin-insert-item.php" class="item">Add New Item</a>
+                <a href="admin-insert-item.php" class="item ">Add New Item</a>
+                <a href="admin-show-user-report.php" class="item">Report</a>
                 <div class="right menu">
                     <div class="item"><button class="button red ui "><a href="../header.php" style="color:white;">Log Out</a></button></div>
                 </div>

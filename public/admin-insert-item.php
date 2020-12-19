@@ -60,6 +60,7 @@ if (isset($_POST["add-category"])) {
                 <a href="admin-list-user.php" class="item"> Users </a>
                 <a href="admin-list-item.php" class="item"> Shops Item </a>
                 <a href="admin-insert-item.php" class="item active">Add New Item</a>
+                <a href="admin-show-user-report.php" class="item">Report</a>
                 <div class="right menu">
                     <div class="item"><button class="button red ui "><a href="../header.php" style="color:white;">Log Out</a></button></div>
                 </div>

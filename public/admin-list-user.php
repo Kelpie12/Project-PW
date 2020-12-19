@@ -27,28 +27,30 @@ include("function.php");
                 <a href="#" class="item uwu"> UWU </a>
                 <a href="admin-list-user.php" class="item active"> Users </a>
                 <a href="admin-list-item.php" class="item"> Shops Item </a>
-                <a href="admin-insert-item.php" class="item">Add New Item</a>
+                <a href="admin-insert-item.php" class="item ">Add New Item</a>
+                <a href="admin-show-user-report.php" class="item">Report</a>
                 <div class="right menu">
                     <div class="item"><button class="button red ui "><a href="../header.php" style="color:white;">Log Out</a></button></div>
                 </div>
             </div>
         </div>
-        <div class="segment ui">
-            <h2>LIST USER</h2>
-            <table class='table ui celled green'>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Saldo</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody class='listUser'>
-                </tbody>
-            </table>
-        </div>
+    </div>
+    <div class="segment ui">
+        <h2>LIST USER</h2>
+        <table class='table ui celled green'>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Saldo</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class='listUser'>
+            </tbody>
+        </table>
+    </div>
     </div>
 </body>
 
