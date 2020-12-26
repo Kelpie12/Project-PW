@@ -36,7 +36,7 @@ include("../public/register-nav.php");
         < Back To Homepage</a> <div class="container">
         <div class="regis-content">
             <div class="regis-image">
-                <figure><img src="register.png" width="400" height="300" style="padding-left=50px"></figure>
+                <figure><img src="gambar_logo.png" width="300" height="350" style="padding-left=50px"></figure>
             </div>
 
             <div class="regis-form">

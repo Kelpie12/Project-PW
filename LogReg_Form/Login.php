@@ -42,7 +42,7 @@ include("../public/login-nav.php");
         < Back To Homepage</a> <div class="container">
         <div class="login-content">
             <div class="login-image">
-                <figure><img src="login.png" width="400" height="300" style="padding-top: 30px;"></figure>
+                <figure><img src="login.png" width="300" height="350" style="padding-top: 30px;"></figure>
             </div>
             <div class="login-form">
                 <form method="POST" class="ui form" id="login-form" style="padding-top: 110px;">
